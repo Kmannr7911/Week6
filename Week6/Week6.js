@@ -4,15 +4,9 @@ function getRandomIndex(max){
 
 //add to start of toArray
 function addArray(fromArray,toArray){
-    var fromArrayIndex = 0;
-    while (fromArrayIndex < fromArray.length) {
-        toArray.unshift(fromArray[fromArrayIndex]);
-        fromArrayIndex += 1;
-    }
+    toArray.push(fromArray);
     return toArray;
-    
 }
-
 class Deck{
     constructor(){
         this.cardDeck = [];
@@ -38,7 +32,7 @@ class Deck{
                     name: cardName,
                     suit: currentSuit,
                     rank: rankCounter,
-                };››››
+                };
                 this.cardDeck.unshift(card);
                 rankCounter += 1;
             }
@@ -108,17 +102,17 @@ for (cardCounter = 0;cardCounter < 24;cardCounter++ ){
     if (player1Card.rank > player2Card.rank){
         player1a.putCard(player1Card);
         player1a.putCard(player2Card);
-        myOutputValue += " Player 1 wins!! \n";
+        myOutputValue += "Player 1 wins!! \n\n";
     } else if (player2Card.rank > player1Card.rank){
         player2.putCard(player1Card);
         player2.putCard(player2Card);
-        myOutputValue += " Player 2 wins \n";
+        myOutputValue += " Player 2 wins \n\n";
     } else{
         myOutputValue = myOutputValue + "It's WAR! \n";
 
         var warCards = [player1Card,player2Card];
         var cardsEqual = true;
-        myOutputValue += "Starting While \n";
+        myOutputValue += "Starting While \n\n";
         while(cardsEqual){
             var p1CardDown = player1a.getCard();
             var p2CardDown = player2.getCard();
@@ -133,27 +127,15 @@ for (cardCounter = 0;cardCounter < 24;cardCounter++ ){
             if (p1CardUp.rank > p2CardUp.rank){
                 cardsEqual = false;
                 player1a.cards = addArray(warCards,player2.cards);
-                myOutputValue += "Player 1 p1CardUp \n";
+                myOutputValue += "Player 1, Add Warcards to Player1 \n\n";
 
             }else if (p2CardUp.rank > p2CardUp.rank){
                 cardsEqual = false;
                 player2.cards = addArray(warCards, player1a.cards);
-                myOutputValue += "Player 2 p2CardUp \n";
+                myOutputValue += "Player2 Wins, Add Warcards to Player2 \n\n";
             }else
-                myOutputValue +="Missed \n";
+                myOutputValue +="Missed \n\n";
             myOutputValue += p1CardUp.name + ":" + p1CardUp.suit + ":" + p2CardUp.name + ":" + p2CardUp.suit + "\n"; 
-
-            if ((player1a.length == 0 && player2.length == 0 ) || (player1a.length == 1 && player2.length == 1)){
-                cardsEqual = false;
-                myOutputValue += " Game Over Tie \n";
-            }else if((player1a.length == 0 || player1a.length == 1) && (player2.length > player1a.length)) {
-                cardsEqual = false;
-                myOutputValue += " Player 1 Loses \n";
-            }else if ((player2.length == 0 || player2.length == 1) && (player1a.length > player2.length)) {
-                cardsEqual = false;
-                myOutputValue += " Player 2 Loses \n";
-
-            }
 
         }
     }
